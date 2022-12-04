@@ -19,11 +19,6 @@ val MINSUP = 3788
 //3788 (7.5%)
 
 
-//57103
-//1428 (2,5%)
-//2856 (5%)
-//4283 (7,5%)
-
 val combinationsUdf = udf((combinationSize: Int, arr: mutable.Seq[Int]) => arr.combinations(combinationSize).toList)
 
 
