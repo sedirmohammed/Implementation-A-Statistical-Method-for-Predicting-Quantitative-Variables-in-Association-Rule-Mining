@@ -4,9 +4,9 @@ import scala.collection.immutable.ListMap
 import org.apache.spark.ml.fpm.FPGrowth
 
 val NUMPARTITIONS = 1440
-//val MINSUP = 0.025
+val MINSUP = 0.025
 //val MINSUP = 0.05
-val MINSUP = 0.075
+//val MINSUP = 0.075
 
 
 
