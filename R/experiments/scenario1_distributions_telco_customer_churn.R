@@ -21,8 +21,8 @@ for (minsup_border in minsup_borders){
     
     
     kld <- round(sum(distribution$rel_counter_set * log(distribution$rel_counter_set/distribution$rel)),4)
-    static_annotation <- grobTree(textGrob(paste("KLD =", kld), x=0.35,  y=0.25, hjust=0,
-                                           gp=gpar(col="black", fontsize=36)))
+    static_annotation <- grobTree(textGrob(paste("KLD =", kld), x=0.17,  y=0.45, hjust=0,
+                                           gp=gpar(col="black", fontsize=40)))
     
     melted <- melt(distribution %>% select(tenure, rel, rel_counter_set), id="tenure")
     

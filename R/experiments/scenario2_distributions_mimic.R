@@ -1,10 +1,12 @@
 
-top_n <- 1
-minsup_borders <- c("2_5", "5", "7_5")
+top_n <- 2
+minsup_borders <- c("0.025", "0.05", "0.075")
 for (minsup_border in minsup_borders){
   for (x in 1:top_n) {
-    set <- read.csv(paste0("../results/scenario2/mimic/los__",x,"__",minsup_border, "__set"))
-    counter_set <- read.csv(paste0("../results/scenario2/mimic/los__",x,"__",minsup_border,"__counter_set"))
+    set <- read.csv(paste0("../results/scenario2/mimic/los__",x,"__",minsup_border, "__set","/part-00000"), header=FALSE)
+    colnames(set) <- "LOS"
+    counter_set <- read.csv(paste0("../results/scenario2/mimic/los__",x,"__",minsup_border, "__counter_set","/part-00000"), header=FALSE)
+    colnames(counter_set) <- "LOS"
     lambda_set <- 1/sum(set$LOS/nrow(set))
     lambda_counterSet <- 1/sum(counter_set$LOS/nrow(counter_set))
     lp <- lambda_counterSet
@@ -20,7 +22,7 @@ for (minsup_border in minsup_borders){
     counter_set_grouped$expo_set_px <- exp(-lambda_counterSet*counter_set_grouped$LOS) - exp(-lambda_counterSet*(counter_set_grouped$LOS+1))
     
     static_annotation <- grobTree(textGrob(paste("KLD =", round(kld, 4)), x=0.35,  y=0.25, hjust=0,
-                                           gp=gpar(col="black", fontsize=36)))
+                                           gp=gpar(col="black", fontsize=40)))
     
     pdf(paste0("../results/scenario2/mimic/mimic__scenario2__Fig__",x,"__",minsup_border,".pdf"), width = 12, height = 12)
     print(ggplot() + 

@@ -34,7 +34,7 @@ for (minsup_border in minsup_borders){
     p_mean <- mean(counter_set$score)
     p_variance <- var(counter_set$score)
     kld_normal <- 0.5 * (((q_mean-p_mean)^2/q_variance^2) + (p_variance^2/q_variance^2) - (log(p_variance^2/q_variance^2)) -1)
-    static_annotation <- grobTree(textGrob(paste("KLD =", round(kld_normal, 4)), x=0.15,  y=0.45, hjust=0, gp=gpar(col="black", fontsize=36)))
+    static_annotation <- grobTree(textGrob(paste("KLD =", round(kld_normal, 4)), x=0.15,  y=0.45, hjust=0, gp=gpar(col="black", fontsize=40)))
     
     pdf(paste0("../results/scenario2/churn_for_bank_customers/churn_for_bank_customers__scenario2__Fig__",x,"__",minsup_border,".pdf"), width = 12, height = 12)
     print(ggplot() + 

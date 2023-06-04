@@ -1,6 +1,6 @@
 
 top_n <- 2
-minsup_borders <- c("0.025", "0.05", "0.075")
+minsup_borders <- c("0.05")
 
 for (minsup_border in minsup_borders){
   for (x in 1:top_n) {
@@ -32,7 +32,7 @@ for (minsup_border in minsup_borders){
     distribution <- rename(distribution, rel = rel.x)
     kld_discrete <- round(sum(distribution$rel_counter_set * log(distribution$rel_counter_set/distribution$rel)),4)
     
-    static_annotation <- grobTree(textGrob(paste("KLD =", round(kld_discrete, 4)), x=0.15,  y=0.45, hjust=0, gp=gpar(col="black", fontsize=36)))
+    static_annotation <- grobTree(textGrob(paste("KLD =", round(kld_discrete, 4)), x=0.15,  y=0.45, hjust=0, gp=gpar(col="black", fontsize=40)))
     pdf(paste0("../results/scenario1/churn_for_bank_customers/churn_for_bank_customers__scenario1__Fig__",x,"__",minsup_border,".pdf"), width = 12, height = 12)
     print(ggplot() + 
       geom_bar(aes(x=set_grouped$score, y= set_grouped$rel), stat="identity",position = "identity", alpha=.4, fill = "steelblue") +

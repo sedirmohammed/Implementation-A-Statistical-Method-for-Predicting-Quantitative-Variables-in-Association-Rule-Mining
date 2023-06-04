@@ -25,7 +25,7 @@ for (minsup_border in minsup_borders){
     counter_set_grouped$expo_set_px <- exp(-lambda_counterSet*counter_set_grouped$tenure) - exp(-lambda_counterSet*(counter_set_grouped$tenure+1))
     
     
-    static_annotation <- grobTree(textGrob(paste("KLD =", round(kld, 4)), x=0.35,  y=0.25, hjust=0, gp=gpar(col="black", fontsize=36)))
+    static_annotation <- grobTree(textGrob(paste("KLD =", round(kld, 4)), x=0.35,  y=0.25, hjust=0, gp=gpar(col="black", fontsize=40)))
     pdf(paste0("../results/scenario2/telco_customer_churn/telco_customer_churn__scenario2__Fig__",x,"__",minsup_border,".pdf"), width = 12, height = 12)
     print(ggplot() + 
       geom_bar(aes(x=setGrouped$tenure, y= setGrouped$rel), stat="identity",position = "identity", alpha=.4, fill = "steelblue") +

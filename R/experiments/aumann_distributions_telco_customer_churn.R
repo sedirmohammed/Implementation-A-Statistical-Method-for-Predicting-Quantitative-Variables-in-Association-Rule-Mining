@@ -7,6 +7,7 @@ for (minsup_border in minsup_borders){
   for (x in 1:top_n) {
     set <- read.csv(paste0("../results/aumann/telco_customer_churn/aumann__tenure__",x,"__",minsup_border,"__set","/part-00000"), header=FALSE)
     colnames(set) <- "tenure"
+    set <- set %>% select(tenure)
     
     set_grouped <- set %>% group_by(tenure) %>% count()
     set_grouped$rel <- set_grouped$n / sum(set_grouped$n)#
@@ -15,6 +16,7 @@ for (minsup_border in minsup_borders){
     
     counter_set <- read.csv(paste0("../results/aumann/telco_customer_churn/aumann__tenure__",x,"__",minsup_border,"__counter_set","/part-00000"), header=FALSE)
     colnames(counter_set) <- "tenure"
+    counter_set <- counter_set %>% select(tenure)
     counter_set_grouped <- counter_set %>% group_by(tenure) %>% count()
     counter_set_grouped$rel <- counter_set_grouped$n / sum(counter_set_grouped$n)#
     counter_set_mean <- mean(counter_set$tenure)
@@ -22,7 +24,7 @@ for (minsup_border in minsup_borders){
     
     
     pdf(paste0("../results/aumann/telco_customer_churn/telco_customer_churn__aumann__Fig__",x,"__",minsup_border,".pdf"), width = 12, height = 12)
-    static_annotation <- grobTree(textGrob(paste("mean difference =", round(set_mean-counter_set_mean, 2)), x=0.08,  y=0.52, hjust=0, gp=gpar(col="black", fontsize=36)))
+    static_annotation <- grobTree(textGrob(paste("mean difference =", round(set_mean-counter_set_mean, 2)), x=0.08,  y=0.52, hjust=0, gp=gpar(col="black", fontsize=40)))
     print(ggplot() + 
             geom_bar(aes(x=set_grouped$tenure, y= set_grouped$rel), stat="identity",position = "identity", alpha=.4, fill = "steelblue") +
             geom_bar(aes(x=counter_set_grouped$tenure, y= counter_set_grouped$rel), stat="identity",position = "identity", alpha=.4, fill = "darkorange") +
